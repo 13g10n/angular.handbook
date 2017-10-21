@@ -1,0 +1,35 @@
+.nav {
+  background-color: #F9B300  !important;
+}
+
+.nav .uk-navbar-toggle {
+  color: white;
+}
+
+.nav .uk-logo {
+  color: white;
+}
+
+.nav-search {
+  background-color: #F8C600  !important;
+  border: 0px;
+  border-radius: 5px !important;
+}
+
+.nav-search-input {
+  color: white !important;
+  border: 0px;
+}
+
+.nav-search-input::-webkit-input-placeholder {
+  color: #F9ECA8 !important;
+  text-align: center;
+}
+
+.nav-bell {
+  color: white;
+}
+
+.nav-bell:hover {
+  color: white;
+}
