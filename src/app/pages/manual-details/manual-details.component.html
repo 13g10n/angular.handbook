@@ -1,0 +1,54 @@
+<div class="ui container">
+  <sui-dimmer class="inverted" [(isDimmed)]="loading">
+    <div class="ui text loader">Loading...</div>
+  </sui-dimmer>
+
+  <h1 class="ui header">
+    {{ manual.title }}
+    <div class="sub header">
+      Published in <strong>{{ manual.topic }}</strong> at {{ manual.created | date:"d.M.y H:m" }}
+      by <i>{{ manual.author.first_name }} {{ manual.author.last_name }}</i>
+    </div>
+  </h1>
+
+  <p>
+    {{ manual.meta }}
+  </p>
+
+  <div class="ui vertical text menu">
+    <div class="header item">Content</div>
+    <a class="item" *ngFor="let step of manual.steps">
+      {{ step.index }}. {{ step.title }}
+    </a>
+  </div>
+
+  <h2 *ngFor="let step of manual.steps" id="step-{{ step.index }}" class="ui header">
+    {{ step.title }}
+    <div class="sub header">
+      {{ step.body }}
+    </div>
+  </h2>
+
+  <div class="ui small labels">
+    <span class="ui label" *ngFor="let tag of manual.tags">{{ tag }}</span>
+  </div>
+
+
+  <div class="ui comments">
+    <div *ngFor="let comment of manual.comments" class="comment">
+      <a class="avatar">
+        <img src="https://semantic-ui.com/images/avatar/small/elliot.jpg">
+      </a>
+      <div class="content">
+        <a class="author">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
+        <div class="metadata">
+          <div class="date">{{ comment.date | date:"d.M.y H:m" }}</div>
+        </div>
+        <div class="text">
+          {{ comment.body }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
