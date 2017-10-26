@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { AuthenticationService } from '../../_services/authentication.service';
-
+import { ManualService } from '../../_services/manual.service';
+import { Manual } from '../../_models/manual';
 
 @Component({
   selector: 'app-header',
@@ -10,13 +11,19 @@ import { AuthenticationService } from '../../_services/authentication.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() sidebar;
+  results: Manual[] = [];
 
-  constructor(public authService: AuthenticationService) {
-  }
+  constructor(
+    public authService: AuthenticationService,
+    private manualService: ManualService,
+  ) { }
 
   ngOnInit() {
 
+  }
+
+  search = (query: string) => {
+    return this.manualService.searchManual(query).then(result => this.results = result);
   }
 
 }

@@ -2,3 +2,16 @@ body, html {
   margin: 0 !important;
   padding: 0 !important;
 }
+
+sui-search div {
+  width: 500px !important;
+}
+
+sui-search input {
+  width: 100% !important;
+  background-color: #eeeeee !important;
+}
+
+sui-search-result {
+  width: 500px;
+}
