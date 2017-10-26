@@ -1,3 +1,31 @@
-.app-menu {
-  background-color: #eeeeee;
+.header-area {
+  background-color: #4caf50;
+  box-sizing: border-box;
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.menu-icon {
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+}
+
+.menu-icon:hover, .menu-icon:active, .menu-icon:focus {
+  background-color: transparent;
+  color: white;
+}
+
+.logo-area {
+  display: inline-block;
+  font-size: 24px;
+  color: white;
+  font-weight: bold;
+  padding-top: 13px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.third-area {
+  text-align: right;
 }
