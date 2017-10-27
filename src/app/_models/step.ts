@@ -1,5 +1,5 @@
 export class Step {
-    index: number;
+    order: number;
     title: string;
-    body: string;
+    content: string;
 }

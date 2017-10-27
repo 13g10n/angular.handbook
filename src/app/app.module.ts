@@ -19,13 +19,15 @@ import { HeaderComponent } from './_components/header/header.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ManualDetailsComponent } from './pages/manual-details/manual-details.component';
 
+import { OrderPipe } from './_pipes/order-by.pipe';
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     AppRoutingModule,
-    SuiModule
+    SuiModule,
   ],
   declarations: [
     AppComponent,
@@ -34,6 +36,8 @@ import { ManualDetailsComponent } from './pages/manual-details/manual-details.co
     HeaderComponent,
     RegisterComponent,
     ManualDetailsComponent,
+
+    OrderPipe
   ],
   providers: [
     AuthGuard,

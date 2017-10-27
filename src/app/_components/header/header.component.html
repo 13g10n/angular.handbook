@@ -15,12 +15,9 @@
   <div class="eight wide column second-area">
     <ng-template let-result let-query="query" #template>
       <h4 class="ui header" style="margin-top: 0;">
-        <span class="ui red tiny label" style="margin-left: 0;">{{ result.topic }}</span>
+        <span class="ui {{ result.topic.color }} tiny label"
+              style="margin-left: 0; margin-right: 5px;">{{ result.topic.title }}</span>
         {{ result.title }}
-        <div class="sub header">
-          Posted {{ result.created | date:"d.M.y" }}
-          by {{ result.author.first_name }} {{ result.author.last_name }}
-        </div>
       </h4>
     </ng-template>
 
