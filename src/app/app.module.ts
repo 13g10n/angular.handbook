@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { SuiModule } from 'ng2-semantic-ui';
+import { SidebarModule } from 'ng-sidebar';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +21,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ManualDetailsComponent } from './pages/manual-details/manual-details.component';
 
 import { OrderPipe } from './_pipes/order-by.pipe';
+import { SearchComponent } from './_components/search/search.component';
+import { ToolbarComponent } from './_components/toolbar/toolbar.component';
+import { SidebarComponent } from './_components/sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -28,6 +32,7 @@ import { OrderPipe } from './_pipes/order-by.pipe';
     FormsModule,
     AppRoutingModule,
     SuiModule,
+    SidebarModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -37,7 +42,13 @@ import { OrderPipe } from './_pipes/order-by.pipe';
     RegisterComponent,
     ManualDetailsComponent,
 
-    OrderPipe
+    OrderPipe,
+
+    SearchComponent,
+
+    ToolbarComponent,
+
+    SidebarComponent,
   ],
   providers: [
     AuthGuard,

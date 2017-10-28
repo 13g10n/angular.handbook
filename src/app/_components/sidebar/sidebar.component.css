@@ -1,0 +1,23 @@
+.sidebar-area {
+  width: 250px !important;
+  border-radius: 0 !important;
+  border: none !important;
+  height: 100%;
+}
+
+.sub-header {
+  background-color: #16ab39 !important;
+  height: 71px;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.user-info {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  height: 100% !important;
+  padding: 20px;
+}
+
+.user-info>h4 {
+  color: white !important;
+}

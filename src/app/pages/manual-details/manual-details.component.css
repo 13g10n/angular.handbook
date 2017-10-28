@@ -1,3 +1,7 @@
 .segment > p {
   font-size: 16px !important;
 }
+
+.page-content {
+  padding-top: 20px;
+}

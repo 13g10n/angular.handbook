@@ -1,0 +1,10 @@
+.menu-icon {
+  background-color: transparent;
+  color: white;
+  font-size: 16px;
+}
+
+.menu-icon:hover, .menu-icon:active, .menu-icon:focus {
+  background-color: transparent;
+  color: white;
+}

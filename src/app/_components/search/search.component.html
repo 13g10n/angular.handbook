@@ -1,0 +1,16 @@
+<ng-template let-result let-query="query" #template>
+  <h4 class="ui header" style="margin-top: 0;">
+        <span class="ui {{ result.topic.color }} tiny label"
+              style="margin-left: 0; margin-right: 5px;">{{ result.topic.title }}</span>
+    {{ result.title }}
+  </h4>
+</ng-template>
+
+<sui-search
+  placeholder="Search for manuals..."
+  [searchDelay]="500"
+  [optionsLookup]="search"
+  [resultTemplate]="template"
+  [retainSelectedResult]="false"
+  (resultSelected)="selected($event)">
+</sui-search>

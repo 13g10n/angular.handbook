@@ -1,8 +1,4 @@
-<div class="ui container">
-  <sui-dimmer class="inverted" [(isDimmed)]="loading">
-    <div class="ui text loader">Loading...</div>
-  </sui-dimmer>
-
+<div class="ui container page-content">
 
   <article class="ui segment">
     <a class="ui {{ manual.topic.color }} left ribbon label">{{ manual.topic.title }}</a>
@@ -25,47 +21,42 @@
       {{ manual.content }}
     </p>
 
-    <h2 *ngFor="let step of manual.steps | orderBy: 'order' " id="step-{{ step.index }}" class="ui header">
-      {{ step.order }}. {{ step.title }}
-      <div class="sub header">
-        {{ step.content }}
-      </div>
-    </h2>
-
     <div class="ui small labels">
       <span class="ui label" *ngFor="let tag of manual.tags">{{ tag }}</span>
     </div>
 
-    <h4 class="ui horizontal divider header">
-      <i class="chat icon"></i>
-      Comments
-    </h4>
-
-    <div class="ui comments">
-      <div *ngFor="let comment of manual.comments" class="comment">
-        <a class="avatar">
-          <img src="https://semantic-ui.com/images/avatar/small/elliot.jpg">
-        </a>
-        <div class="content">
-          <a class="author">{{ comment.user.first_name }} {{ comment.user.last_name }}</a>
-          <div class="metadata">
-            <div class="date">{{ comment.date | date:"d.M.y H:m" }}</div>
-          </div>
-          <div class="text">
-            {{ comment.body }}
-          </div>
-        </div>
-      </div>
-
-      <form class="ui reply form">
-        <div class="field">
-          <textarea></textarea>
-        </div>
-        <div class="ui blue labeled submit icon button">
-          <i class="icon edit"></i> Add Reply
-        </div>
-      </form>
-    </div>
   </article>
 
+  <!--<div class="ui grid">
+    <div class="eleven wide column">
+
+      <div class="ui fluid card" *ngFor="let step of manual.steps | orderBy: 'order'">
+        <div class="image">
+          <img *ngFor="let attachment of step.attachments" src="{{ attachment }}">
+        </div>
+        <div class="content">
+          <a class="header">{{ step.title }}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="five wide column">
+      <div class="ui fluid card">
+        <div class="content">
+
+          <div class="ui vertical text menu">
+            <div class="header item">Content</div>
+            <a *ngFor="let step of manual.steps | orderBy: 'order'" class="item">
+              {{ step.order }}. {{ step.title }}
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>-->
+
 </div>
+
+

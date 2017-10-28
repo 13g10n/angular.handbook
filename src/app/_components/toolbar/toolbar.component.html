@@ -1,0 +1,13 @@
+<div *ngIf="!authService.isLoggedIn()">
+  <a routerLink="/login" class="ui white button">Login</a>
+</div>
+
+<div *ngIf="authService.isLoggedIn()">
+
+  <button class="ui icon button menu-icon">
+    <i class="alarm outline icon"></i>
+  </button>
+
+  <img (click)="toggleSidebar()" class="ui avatar image" src="">
+
+</div>

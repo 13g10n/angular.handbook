@@ -1,42 +1,13 @@
-<!--<div class="ui fixed text menu">
-  <div class="header item">HandBook</div>
-
-  <a class="item" routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-   Home
-  </a>
-
-</div>-->
-
 <nav class="ui stackable grid header-area">
   <div class="four wide column first-area">
     <span class="logo-area" (click)="goHome()">HandBook</span>
   </div>
 
   <div class="eight wide column second-area">
-    <ng-template let-result let-query="query" #template>
-      <h4 class="ui header" style="margin-top: 0;">
-        <span class="ui {{ result.topic.color }} tiny label"
-              style="margin-left: 0; margin-right: 5px;">{{ result.topic.title }}</span>
-        {{ result.title }}
-      </h4>
-    </ng-template>
-
-    <sui-search
-      placeholder="Search for manuals..."
-      [searchDelay]="500"
-      [optionsLookup]="search"
-      [resultTemplate]="template"
-      [retainSelectedResult]="false"
-      (resultSelected)="selected($event)">
-    </sui-search>
+    <app-search></app-search>
   </div>
 
   <div class="four wide column third-area">
-    <button class="ui icon button menu-icon">
-      <i class="alarm outline icon"></i>
-    </button>
-    <a>
-      <img class="ui avatar image" src="https://semantic-ui.com/images/wireframe/square-image.png">
-    </a>
+    <app-toolbar [sidebar]="sidebar"></app-toolbar>
   </div>
 </nav>

@@ -1,8 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
-import { AuthenticationService } from '../../_services/authentication.service';
-import { ManualService } from '../../_services/manual.service';
-import { Manual } from '../../_models/manual';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,29 +7,15 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  results: Manual[] = [];
+  @Input() sidebar: any;
 
   constructor(
-    public authService: AuthenticationService,
-    private manualService: ManualService,
-    private router: Router
+    private router: Router,
   ) { }
 
-  ngOnInit() {
-
-  }
-
-  search = (query: string) => {
-    return this.manualService.searchManual(query).then(result => this.results = result);
-  }
-
-  selected(manual) {
-    this.router.navigate(['/manual', manual.id]);
-  }
-
-  goHome(){
+  goHome() {
     this.router.navigate(['']);
   }
 
