@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SuiModule } from 'ng2-semantic-ui';
 import { SidebarModule } from 'ng-sidebar';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +26,7 @@ import { OrderPipe } from './_pipes/order-by.pipe';
 import { SearchComponent } from './_components/search/search.component';
 import { ToolbarComponent } from './_components/toolbar/toolbar.component';
 import { SidebarComponent } from './_components/sidebar/sidebar.component';
+import {NotificationService} from './_services/notification.service';
 
 @NgModule({
   imports: [
@@ -32,7 +35,8 @@ import { SidebarComponent } from './_components/sidebar/sidebar.component';
     FormsModule,
     AppRoutingModule,
     SuiModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    SimpleNotificationsModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -55,7 +59,8 @@ import { SidebarComponent } from './_components/sidebar/sidebar.component';
     AuthenticationService,
     UserService,
 
-    ManualService
+    ManualService,
+    NotificationService
   ],
   bootstrap: [ AppComponent ]
 })

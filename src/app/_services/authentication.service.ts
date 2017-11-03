@@ -15,6 +15,10 @@ export class AuthenticationService {
     this.token = currentUser && currentUser.token;
   }
 
+  getToken() {
+    return this.token;
+  }
+
   login(email: string, password: string): Observable<String> {
     const myHeader = new Headers();
     myHeader.append('Content-Type', 'application/json');
