@@ -1,0 +1,19 @@
+
+<div class="ui container page-content">
+  <div class="ui segment">
+
+    <div class="form-group">
+      <div class="btn-group">
+        <button *ngFor="let lang of supportedLanguages"
+                (click)="selectLang(lang.value)"
+                class="btn btn-default btn-sm" [class.btn-primary]="isCurrentLang(lang.value)">
+          {{ lang.display }}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

@@ -7,11 +7,13 @@ import { RegisterComponent } from './pages/register/register.component';
 
 import { AuthGuard } from './_guards/auth.guard';
 import {ManualDetailsComponent} from './pages/manual-details/manual-details.component';
+import {ProfileComponent} from './pages/profile/profile.component';
 
 const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'manual/:id', component: ManualDetailsComponent},
   { path: '', component: HomeComponent, /* canActivate: [AuthGuard] */ },
   { path: '**', redirectTo: '' }

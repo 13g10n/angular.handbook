@@ -11,25 +11,36 @@ import { UserService } from '../../_services/user.service';
 export class RegisterComponent implements OnInit {
   model: any = {};
   loading = false;
-  error = '';
+
+  hasError = false;
+  errorHeading = '';
+  errorBody = '';
 
   constructor(
-      private router: Router,
-      private userService: UserService) { }
+    private router: Router,
+    private userService: UserService
+  ) { }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() { }
 
   register() {
-      this.loading = true;
-      this.userService.createUser(this.model.email, this.model.password, this.model.first_name, this.model.last_name)
-            .subscribe(
-                (data) => { this.router.navigate(['/login']); },
-                (err) => {
-                    this.error = Object.keys(JSON.parse(err._body))[0] + ': ' + Object.values(JSON.parse(err._body))[0];
-                    this.loading = false;
-                });
+    this.loading = true;
+    this.hasError = false;
+    this.userService.createUser(this.model.email, this.model.password, this.model.first_name, this.model.last_name)
+      .subscribe(
+      (data) => {
+        this.hasError = false;
+        this.router.navigate(['/login']);
+      },
+      (err) => {
+        this.hasError = true;
+        for (const key in JSON.parse(err._body)) {
+          this.errorBody = JSON.parse(err._body)[key];
+          this.errorHeading = key;
+          break;
+        }
+        this.loading = false;
+      });
   }
 
 }

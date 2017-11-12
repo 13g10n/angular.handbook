@@ -1,42 +1,49 @@
-<div class="ui grid">
-  <div class="sixteen wide mobile eight wide computer column">
-    <p>1</p>
-  </div>
+<div class="login-container">
 
-  <div class="sixteen wide mobile eight wide computer column">
-    <div class="ui segment">
-      <form (ngSubmit)="login()" class="ui large form">
-        <div class="ui stacked segment">
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="user icon"></i>
-              <input type="email" name="email" [(ngModel)]="model.email" required placeholder="E-mail address">
-            </div>
+  <div class="login-form">
+    <form (ngSubmit)="login()" class="ui large form">
+
+      <div class="field" style="text-align: left">
+        <sui-message *ngIf="hasError" class="error">
+          <div class="header">
+            {{ 'Error' | translate }}!
           </div>
-          <div class="field">
-            <div class="ui left icon input">
-              <i class="lock icon"></i>
-              <input type="password" name="password" [(ngModel)]="model.password" required placeholder="Password">
-            </div>
-          </div>
+          <p>
+            {{ errorHeading | titlecase | translate }}: {{ errorBody | translate }}
+          </p>
+        </sui-message>
+      </div>
 
-          <sui-message *ngIf="error" class="error">
-            <div class="header">
-              Error!
-            </div>
-            <p>{{ error }}</p>
-          </sui-message>
-
-          <button [disabled]="loading" class="ui fluid large teal submit button">Login</button>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user circle icon"></i>
+          <input type="email" name="email" [(ngModel)]="model.email"
+                 required placeholder="{{ 'Email' | translate }}">
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <input type="password" name="password" [(ngModel)]="model.password"
+                 required placeholder="{{ 'Password' | translate }}">
+        </div>
+      </div>
 
-    <div class="ui message">
-      New to us? <a routerLink="/register">Sign Up</a>
-    </div>
+      <div class="field">
+        <button [disabled]="loading" class="ui fluid large inverted button">
+          {{ 'Sign in' | translate }}
+        </button>
+      </div>
+    </form>
+
+    <span class="login-to-register">{{ 'New to us?' | translate }}
+      <a routerLink="/register">{{ 'Sign up' | translate }}</a>
+    </span>
+
   </div>
 </div>
+
+
 
 
 

@@ -7,7 +7,18 @@
       </h4>
     </div>
   </div>
-  <a class="item" routerLink="/login">
-    <i class="sign out icon"></i> Sign out
+
+  <a class="item" (click)="toggleSidebar()" routerLink="">
+    <i class="file outline icon"></i> {{ 'Manuals' | translate }}
   </a>
+  <a class="item" (click)="toggleSidebar()" routerLink="">
+    <i class="trophy icon"></i> {{ 'Awards' | translate }}
+  </a>
+  <a class="item" (click)="toggleSidebar()" routerLink="/profile">
+    <i class="setting icon"></i> {{ 'Settings' | translate }}
+  </a>
+  <a class="item" (click)="toggleSidebar()" routerLink="/login">
+    <i class="sign out icon"></i> {{ 'Sign out' | translate }}
+  </a>
+
 </div>
