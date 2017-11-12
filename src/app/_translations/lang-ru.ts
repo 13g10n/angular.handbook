@@ -6,6 +6,7 @@ export const LANG_RU_TRANS = {
 
   // Component: sidebar
   'Manuals': 'Инструкции',
+  'Create': 'Добавить',
   'Awards': 'Награды',
   'Settings': 'Настройки',
   'Sign out': 'Выйти',
@@ -13,7 +14,7 @@ export const LANG_RU_TRANS = {
   // Component: toolbar
   'Sign in': 'Войти',
 
-  // Errors
+  // Errors & notify
   'Error': 'Ошибка',
   'Email': 'Email',
   'Password' : 'Пароль',
@@ -21,6 +22,8 @@ export const LANG_RU_TRANS = {
   'Detail': 'Детали',
   'Unable to login with provided credentials.': 'Не удалось войти с предоставленными учетными данными.',
   'Enter a valid email address.': 'Введите реальный email адрес.',
+  'Saved': 'Сохранено',
+  'Profile is updated': 'Профиль обновлён',
 
   // Page: login
   'New to us?': 'Впервые здесь?',
@@ -34,5 +37,13 @@ export const LANG_RU_TRANS = {
   // Page: profile
   'Account settings': 'Настройки аккаунта',
   'Manage your preferences': 'Управление вашими предпочтениями',
+  'Save': 'Сохранить',
+
+  // Page: home
+  'Published': 'Опубликовано',
+
+  // Page: 404
+  'Page not found': 'Страница не найдена',
+  'The page you requested does not exist': 'Запрашиваемая страница не существует',
 
 };

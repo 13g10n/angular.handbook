@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from './_services/notification.service';
 import { TranslateService } from './_translations/translate.service';
+import {AlertsService} from "@jaspero/ng2-alerts";
 
 @Component({
   selector: 'app-root',

@@ -24,6 +24,30 @@
       <sui-select-option *ngFor="let o of templated.filteredOptions" [value]="o"></sui-select-option>
     </sui-select>
 
+    <form (ngSubmit)="save()" class="ui form" style="margin-top: 15px;">
+
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user circle icon"></i>
+          <input type="email" name="first_name" [(ngModel)]="user.first_name"
+                 required placeholder="{{ 'First name' | translate }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user circle icon"></i>
+          <input type="email" name="last_name" [(ngModel)]="user.last_name"
+                 required placeholder="{{ 'Last name' | translate }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <button type="submit" class="ui primary button">{{ 'Save' | translate }}</button>
+      </div>
+
+    </form>
+
   </div>
 </div>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ManualService } from '../../_services/manual.service';
 import { Manual } from '../../_models/manual';
 import { Router } from '@angular/router';
+import {AlertsService} from "@jaspero/ng2-alerts";
 
 
 @Component({
@@ -15,7 +16,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private manualService: ManualService,
-    private router: Router
+    private router: Router,
+    private _alert: AlertsService,
   ) { }
 
   ngOnInit() {

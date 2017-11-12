@@ -2,16 +2,21 @@
   <div class="item sub-header">
     <div class="user-info">
       <h4 class="ui header">
-        Ivan Borisenko
-        <div class="sub header" style="color: rgba(255, 255, 255, 0.8)">mteru00@gmail.com</div>
+        {{ user.first_name }} {{ user.last_name }}
+        <div class="sub header" style="color: rgba(255, 255, 255, 0.8)">
+          {{ user.email }}
+        </div>
       </h4>
     </div>
   </div>
 
-  <a class="item" (click)="toggleSidebar()" routerLink="">
-    <i class="file outline icon"></i> {{ 'Manuals' | translate }}
+  <a class="item" (click)="toggleSidebar()" routerLink="/manual">
+    <i class="file icon"></i> {{ 'Manuals' | translate }}
   </a>
-  <a class="item" (click)="toggleSidebar()" routerLink="">
+  <a class="item" (click)="toggleSidebar()" routerLink="/manual/create">
+    <i class="plus square icon"></i> {{ 'Create' | translate }}
+  </a>
+  <a class="item" (click)="toggleSidebar()" routerLink="/awards">
     <i class="trophy icon"></i> {{ 'Awards' | translate }}
   </a>
   <a class="item" (click)="toggleSidebar()" routerLink="/profile">

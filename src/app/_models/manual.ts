@@ -15,4 +15,5 @@ export class Manual {
     author: User;
     rating: Rating;
     comments: Comment[];
+    cover: string;
 }

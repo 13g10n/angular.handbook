@@ -14,6 +14,14 @@ export class UserService {
     private authenticationService: AuthenticationService) {
   }
 
+  getDetails() {
+    const headers = new Headers({ 'Authorization': 'Token ' + this.authenticationService.token });
+    const options = new RequestOptions({ headers: headers });
+
+    return this.http.get('http://localhost:8000/api/accounts/users/me/', options)
+      .map((response: Response) => response.json());
+  }
+
   getUsers(): Observable<User[]> {
     const headers = new Headers({ 'Authorization': 'Token ' + this.authenticationService.token });
     const options = new RequestOptions({ headers: headers });
@@ -31,7 +39,7 @@ export class UserService {
         password: password,
         first_name: first_name,
         last_name: last_name,
-    }
+    };
     return this.http.post('http://127.0.0.1:8000/api/accounts/signup/', JSON.stringify(data), options)
         .map((response: Response) => response);
   }
@@ -45,15 +53,12 @@ export class UserService {
     });
   }
 
-  manageUser(id: Number, blocked: boolean) {
+  updateInfo(user: User) {
     const headers = new Headers({ 'Authorization': 'Token ' + this.authenticationService.token, 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
-
-    const json = JSON.stringify({ is_active: blocked });
-
-    this.http.patch('http://127.0.0.1:8000/api/users/' + id + "/", json, options)
-      .subscribe((res) => {
-    });
+    const json = JSON.stringify(user);
+    this.authenticationService.setUser(user);
+    return this.http.patch('http://127.0.0.1:8000/api/users/' + user.id + '/', json, options);
   }
 
 }

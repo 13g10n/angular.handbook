@@ -16,18 +16,19 @@ export class NotificationService {
 
     this.ws.onOpen(
       () => {
-        console.log('opened!');
+        console.log('Socket opened!');
       }
     );
 
     this.ws.onMessage(
       (msg: MessageEvent) => {
         const notification = JSON.parse(msg.data);
+        console.log('Message recived!');
         this._notificationsService.info(
           notification['title'],
           notification['text'],
           {
-            timeOut: 5000,
+            timeOut: 6000,
             showProgressBar: true,
             pauseOnHover: true,
             clickToClose: true,
