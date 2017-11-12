@@ -31,4 +31,8 @@ export const LANG_RU_TRANS = {
   'First name': 'Имя',
   'Last name': 'Фамилия',
 
+  // Page: profile
+  'Account settings': 'Настройки аккаунта',
+  'Manage your preferences': 'Управление вашими предпочтениями',
+
 };

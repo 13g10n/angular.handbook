@@ -2,15 +2,27 @@
 <div class="ui container page-content">
   <div class="ui segment">
 
-    <div class="form-group">
-      <div class="btn-group">
-        <button *ngFor="let lang of supportedLanguages"
-                (click)="selectLang(lang.value)"
-                class="btn btn-default btn-sm" [class.btn-primary]="isCurrentLang(lang.value)">
-          {{ lang.display }}
-        </button>
+    <h2 class="ui header">
+      <i class="settings icon"></i>
+      <div class="content">
+        {{ 'Account settings' | translate }}
+        <div class="sub header">{{ 'Manage your preferences' | translate }}</div>
       </div>
-    </div>
+    </h2>
+
+    <ng-template let-option #optionTemplate>
+      <i class="{{ option.flag }} flag"></i>{{ option.display }}
+    </ng-template>
+    <sui-select class="selection"
+                [(ngModel)]="selectedLanguage"
+                [options]="supportedLanguages"
+                labelField="display"
+                (selectedOptionChange)="langChange($event)"
+                [optionTemplate]="optionTemplate"
+                [isSearchable]="true"
+                #templated>
+      <sui-select-option *ngFor="let o of templated.filteredOptions" [value]="o"></sui-select-option>
+    </sui-select>
 
   </div>
 </div>

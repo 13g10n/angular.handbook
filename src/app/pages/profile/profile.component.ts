@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '../../_translations/translate.service';
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-profile',
@@ -9,20 +10,23 @@ import { TranslateService } from '../../_translations/translate.service';
 export class ProfileComponent implements OnInit {
 
   public supportedLanguages = [
-    { display: 'English', value: 'en' },
-    { display: 'Русский', value: 'ru' },
+    { display: 'English', value: 'en', flag: 'us' },
+    { display: 'Русский', value: 'ru', flag: 'ru' },
   ];
+
+  selectedLanguage = this.getSelectedLanguage();
 
   constructor(private _translate: TranslateService) { }
 
   ngOnInit() {
-    this._translate.setDefaultLang('en');
     this._translate.enableFallback(true);
+  }
 
-    const lang = localStorage.getItem('lang');
-    console.log(lang);
-    if (lang) {
-      this.selectLang(lang);
+  getSelectedLanguage() {
+    for (let lang of this.supportedLanguages) {
+      if ( this.isCurrentLang(lang.value) ) {
+        return lang;
+      }
     }
   }
 
@@ -33,6 +37,10 @@ export class ProfileComponent implements OnInit {
   selectLang(lang: string) {
     this._translate.use(lang);
     localStorage.setItem('lang', lang);
+  }
+
+  langChange(option) {
+    this.selectLang(option.value);
   }
 
 }
