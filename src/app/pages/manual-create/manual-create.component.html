@@ -1,3 +1,86 @@
-<p>
-  manual-create works!
-</p>
+<div class="ui container page-content">
+  <div class="ui segment">
+
+    <h2 class="ui header">
+      <i class="settings icon"></i>
+      <div class="content">
+        {{ 'Create manual' | translate }}
+        <div class="sub header">{{ 'Add new manual to system' | translate }}</div>
+      </div>
+    </h2>
+
+    <form (ngSubmit)="create()" class="ui form" style="margin-top: 15px;">
+
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="font icon"></i>
+          <input type="text" name="title" [(ngModel)]="manual.title"
+                 required placeholder="{{ 'Title' | translate }}">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="ui left icon input">
+          <textarea name="content" [(ngModel)]="manual.content"
+                    required placeholder="{{ 'Description' | translate }}"></textarea>
+        </div>
+      </div>
+
+      <div class="field">
+        <sui-select class="selection"
+                    [(ngModel)]="selectedTopic"
+                    [ngModelOptions]="{ standalone: true }"
+                    [optionsLookup]="lookupFn"
+                    labelField="title"
+                    valueField="title"
+                    [isSearchable]="true"
+                    #searchSelect>
+          <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
+        </sui-select>
+      </div>
+
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="image icon"></i>
+          <input type="text" name="cover" [(ngModel)]="manual.cover"
+                 placeholder="{{ 'Cover image url' | translate }}">
+        </div>
+      </div>
+
+      <div class="ui segment" *ngFor="let step of manual.steps | orderBy: 'order'">
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="font icon"></i>
+            <input type="text" name="title" [(ngModel)]="step.title"
+                   placeholder="{{ 'Step title' | translate }}">
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="sort icon"></i>
+            <input type="number" name="ordering" [(ngModel)]="step.order"
+                   placeholder="{{ 'Step ordering' | translate }}">
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input">
+          <textarea name="content" [(ngModel)]="step.content"
+                    required placeholder="{{ 'Step description' | translate }}"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" (click)="addStep()" class="ui button default">Add step</button>
+
+
+      <div class="field">
+        <button type="submit" class="ui primary button">{{ 'Save' | translate }}</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

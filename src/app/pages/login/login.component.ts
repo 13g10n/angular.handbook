@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params } from '@angular/router';
-
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../../_services/authentication.service';
-import {UserService} from "../../_services/user.service";
-import {User} from "../../_models/user";
+import {UserService} from '../../_services/user.service';
+import {User} from '../../_models/user';
+import {LoadingService} from '../../_services/loading.service';
+import {NotificationsService} from 'angular2-notifications/dist';
+import {TranslationService} from '../../_translations/translation.service';
 
 @Component({
   moduleId: module.id,
@@ -13,53 +15,41 @@ import {User} from "../../_models/user";
 
 export class LoginComponent implements OnInit {
   model: any = {};
-  loading = false;
-
-  hasError = false;
-  errorHeading = '';
-  errorBody = '';
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService,
+    private authService: AuthenticationService,
     private userService: UserService,
+    private loadingService: LoadingService,
+    private notificationsService: NotificationsService,
+    private translationService: TranslationService
   ) { }
 
   ngOnInit() {
-    this.authenticationService.logout();
+    this.authService.logout();
   }
 
   login() {
-    this.loading = true;
-    this.hasError = false;
-    this.authenticationService.login(this.model.email, this.model.password)
+    this.loadingService.start();
+    this.authService.login(this.model.email, this.model.password)
       .subscribe(
-      (data) => {
-        this.hasError = false;
-
+      () => {
         this.userService.getDetails().subscribe(
           (data) => {
-            const user: User = new User();
-            user.email = data.email;
-            user.first_name = data.first_name;
-            user.last_name = data.last_name;
-            user.avatar = data.avatar;
+            const user: User = data;
             user.id = data.pk;
-            user.language = data.language;
-            this.authenticationService.setUser(user);
+            this.authService.setUser(user);
           }
         );
-
         this.router.navigate(['/']);
+        this.loadingService.end();
       },
       (err) => {
-        this.hasError = true;
-        for (const key in JSON.parse(err._body)) {
-          this.errorBody = JSON.parse(err._body)[key];
-          this.errorHeading = key;
-          break;
-        }
-        this.loading = false;
+        this.notificationsService.error(
+          this.translationService.instant('Error!'),
+          this.translationService.instant(JSON.parse(err._body))
+        );
+        this.loadingService.end();
       });
   }
 }

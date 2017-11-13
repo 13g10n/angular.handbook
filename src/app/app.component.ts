@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from './_services/notification.service';
-import { TranslateService } from './_translations/translate.service';
+import { TranslationService } from './_translations/translation.service';
 import {AlertsService} from "@jaspero/ng2-alerts";
 
 @Component({
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private notificationService: NotificationService,
-    private translationService: TranslateService
+    private translationService: TranslationService
   ) {}
 
 

@@ -12,11 +12,13 @@ import {ManualCreateComponent} from "./pages/manual-create/manual-create.compone
 import {ManualLibraryComponent} from "./pages/manual-library/manual-library.component";
 import {ManualAwardsComponent} from "./pages/manual-awards/manual-awards.component";
 import {NotFoundComponent} from "./pages/not-found/not-found.component";
+import {ActivateComponent} from "./pages/activate/activate.component";
 
 const routes: Routes = [
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'activate', component: ActivateComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'awards', component: ManualAwardsComponent, canActivate: [AuthGuard] },
   { path: 'manual', component: ManualLibraryComponent, canActivate: [AuthGuard] },

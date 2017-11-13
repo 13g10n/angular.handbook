@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '../../_translations/translate.service';
+import { TranslationService } from '../../_translations/translation.service';
 import { User } from '../../_models/user';
 import {AuthenticationService} from '../../_services/authentication.service';
 import {UserService} from '../../_services/user.service';
 import {NotificationsService} from "angular2-notifications/dist";
+import {LoadingService} from "../../_services/loading.service";
 
 @Component({
   selector: 'app-profile',
@@ -22,14 +23,15 @@ export class ProfileComponent implements OnInit {
   selectedLanguage = this.getSelectedLanguage();
 
   constructor(
-    private _translate: TranslateService,
+    private translationService: TranslationService,
     private authService: AuthenticationService,
     private userService: UserService,
-    private notificationService: NotificationsService
+    private notificationService: NotificationsService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
-    this._translate.enableFallback(true);
+    this.translationService.enableFallback(true);
   }
 
   getSelectedLanguage() {
@@ -41,11 +43,11 @@ export class ProfileComponent implements OnInit {
   }
 
   isCurrentLang(lang: string) {
-    return lang === this._translate.currentLang;
+    return lang === this.translationService.currentLang;
   }
 
   selectLang(lang: string) {
-    this._translate.use(lang);
+    this.translationService.use(lang);
     localStorage.setItem('lang', lang);
   }
 
@@ -54,29 +56,32 @@ export class ProfileComponent implements OnInit {
   }
 
   save() {
+    this.loadingService.start();
     this.user.language = this.selectedLanguage.value;
     this.userService.updateInfo(this.user).subscribe(
       (res) => {
         this.notificationService.success(
-          this._translate.instant('Saved'),
-          this._translate.instant('Profile is updated'),
+          this.translationService.instant('Saved'),
+          this.translationService.instant('Profile is updated'),
           {
             timeOut: 3000,
             clickToClose: true,
             maxLength: 140
           }
         );
+        this.loadingService.end();
       },
     (err) => {
         this.notificationService.error(
-          this._translate.instant('Error'),
-          this._translate.instant(err.body),
+          this.translationService.instant('Error'),
+          this.translationService.instant(err.body),
           {
             timeOut: 3000,
             clickToClose: true,
             maxLength: 140
           }
         );
+        this.loadingService.end();
       }
     );
   }

@@ -28,11 +28,15 @@ export const LANG_RU_TRANS = {
   // Page: login
   'New to us?': 'Впервые здесь?',
   'Sign up': 'Зарегистрироваться',
+  'Now you can sign in with your email and password': 'Теперь вы можете войти используя свой email и пароль',
+  'Well done!': 'Отлично!',
 
   // Page: register
   'Already have an account?': 'Уже зарегистрированы?',
   'First name': 'Имя',
   'Last name': 'Фамилия',
+  'Check your email': 'Проверьте почту',
+  'We need to verify your email address': 'Необходимо подтвердить адрес электронной почты',
 
   // Page: profile
   'Account settings': 'Настройки аккаунта',
@@ -45,5 +49,19 @@ export const LANG_RU_TRANS = {
   // Page: 404
   'Page not found': 'Страница не найдена',
   'The page you requested does not exist': 'Запрашиваемая страница не существует',
+
+  // Page: activate
+  'Activating account': 'Активация аккаунта',
+  'It may take some time': 'Это может занять некоторое время',
+
+  // Page: manual details
+  'By': 'От',
+  'Content': 'Содержание',
+  'You are voted this post!': 'Вы оценили эту инструкцию!',
+  'Done!': 'Готово!',
+  'Comments': 'Комментарии',
+  'Like it!': 'Мне нравится!',
+  'Add reply': 'Добавить комментарий',
+  'Start typing...': 'Начните писать...',
 
 };

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map'
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 
 import { AuthenticationService } from '../_services/authentication.service';
 import { User } from '../_models/user';
@@ -22,12 +22,12 @@ export class UserService {
       .map((response: Response) => response.json());
   }
 
-  getUsers(): Observable<User[]> {
-    const headers = new Headers({ 'Authorization': 'Token ' + this.authenticationService.token });
+  activateUser(code) {
+    const headers = new Headers({ 'Content-Type': 'application/json' });
     const options = new RequestOptions({ headers: headers });
 
-    return this.http.get('http://127.0.0.1:8000/api/users/', options)
-        .map((response: Response) => response.json());
+    return this.http.get('http://127.0.0.1:8000/api/accounts/signup/verify/?code=' + code, options)
+      .map((response: Response) => response);
   }
 
   createUser(email: String, password: String, first_name: String, last_name: String): Observable<Response> {

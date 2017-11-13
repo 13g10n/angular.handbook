@@ -2,7 +2,7 @@ import { Injectable, Inject, EventEmitter } from '@angular/core';
 import { TRANSLATIONS } from './translations';
 
 @Injectable()
-export class TranslateService {
+export class TranslationService {
   private _currentLang: string;
   private _defaultLang: string;
   private _fallback: boolean;

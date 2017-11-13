@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ManualService } from '../../_services/manual.service';
 import { Manual } from '../../_models/manual';
 import { Router } from '@angular/router';
-import {AlertsService} from "@jaspero/ng2-alerts";
 
 
 @Component({
@@ -12,15 +11,16 @@ import {AlertsService} from "@jaspero/ng2-alerts";
 
 export class HomeComponent implements OnInit {
 
+  topManuals: Manual[] = [];
   manuals: Manual[] = [];
 
   constructor(
     private manualService: ManualService,
     private router: Router,
-    private _alert: AlertsService,
   ) { }
 
   ngOnInit() {
+    this.manualService.getTopManualList().then(topManuals => this.topManuals = topManuals);
     this.manualService.getManualList().then(manuals => this.manuals = manuals);
   }
 

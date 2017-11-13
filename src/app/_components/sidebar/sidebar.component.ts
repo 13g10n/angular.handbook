@@ -11,13 +11,19 @@ export class SidebarComponent implements OnInit {
 
   @Input() sidebar: any;
 
-  user: User = this.authService.getUser();
+  user: User;
+  subscription: any;
 
   constructor(
     public authService: AuthenticationService
   ) { }
 
   ngOnInit() {
+    this.subscription = this.authService.getUserChangeEmitter()
+      .subscribe(user => {
+        this.user = user;
+      });
+    this.user = this.authService.getUser();
   }
 
   toggleSidebar() {

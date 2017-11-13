@@ -17,7 +17,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { AuthenticationService } from './_services/authentication.service';
 import { UserService } from './_services/user.service';
 import { ManualService } from './_services/manual.service';
-import { TranslateService } from './_translations';
+import { TranslationService } from './_translations';
 import { TRANSLATION_PROVIDERS, TranslatePipe } from './_translations';
 
 import { HomeComponent } from './pages/home/home.component';
@@ -34,6 +34,11 @@ import { ManualCreateComponent } from './pages/manual-create/manual-create.compo
 import { ManualLibraryComponent } from './pages/manual-library/manual-library.component';
 import { ManualAwardsComponent } from './pages/manual-awards/manual-awards.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ActivateComponent } from './pages/activate/activate.component';
+import {LoadingService} from "./_services/loading.service";
+import { LoadingComponent } from './_components/loading/loading.component';
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {CommentsService} from "./_services/comments.service";
 
 @NgModule({
   imports: [
@@ -44,7 +49,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     SuiModule,
     JasperoAlertsModule,
     SidebarModule.forRoot(),
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
   ],
   declarations: [
     AppComponent,
@@ -63,17 +68,19 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ManualLibraryComponent,
     ManualAwardsComponent,
     NotFoundComponent,
+    ActivateComponent,
+    LoadingComponent,
   ],
   providers: [
     AuthGuard,
     AuthenticationService,
     UserService,
-
     TRANSLATION_PROVIDERS,
-    TranslateService,
-
+    TranslationService,
     ManualService,
-    NotificationService
+    NotificationService,
+    LoadingService,
+    CommentsService
   ],
   bootstrap: [ AppComponent ]
 })

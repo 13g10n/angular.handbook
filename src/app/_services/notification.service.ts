@@ -7,40 +7,48 @@ import { NotificationsService } from 'angular2-notifications/dist';
 export class NotificationService {
 
   ws: $WebSocket;
+  subscription: any;
 
   constructor(
     private authService: AuthenticationService,
-    private _notificationsService: NotificationsService
+    private notificationsService: NotificationsService
   ) {
-    this.ws = new $WebSocket('ws://127.0.0.1:8000/notification/?token=' + this.authService.getToken());
+    this.subscription = this.authService.getUserChangeEmitter()
+      .subscribe(user => {
+        this.connect();
+      });
+    this.connect();
+  }
 
-    this.ws.onOpen(
-      () => {
-        console.log('Socket opened!');
-      }
-    );
-
-    this.ws.onMessage(
-      (msg: MessageEvent) => {
-        const notification = JSON.parse(msg.data);
-        console.log('Message recived!');
-        this._notificationsService.info(
-          notification['title'],
-          notification['text'],
-          {
-            timeOut: 6000,
-            showProgressBar: true,
-            pauseOnHover: true,
-            clickToClose: true,
-            maxLength: 140
-          }
-        );
-      },
-      {
-        autoApply: false
-      }
-    );
-
+  connect() {
+    if (this.authService.isLoggedIn()) {
+      this.ws = new $WebSocket('ws://127.0.0.1:8000/notification/?token=' + this.authService.getToken());
+      this.ws.onOpen(
+        () => {
+          console.log('Socket opened!');
+        }
+      );
+      this.ws.onMessage(
+        (msg: MessageEvent) => {
+          const notification = JSON.parse(msg.data);
+          console.log('Message recived!');
+          this.notificationsService.info(
+            notification['title'],
+            notification['text'],
+            {
+              timeOut: 6000,
+              showProgressBar: true,
+              pauseOnHover: true,
+              clickToClose: true,
+              maxLength: 140
+            }
+          );
+        },
+        {
+          autoApply: false
+        }
+      );
+    }
   }
 
 }

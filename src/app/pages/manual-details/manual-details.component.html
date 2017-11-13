@@ -2,15 +2,21 @@
 
   <article class="ui segment">
     <a class="ui {{ manual.topic.color }} left ribbon label">{{ manual.topic.title }}</a>
-    <span>Published at {{ manual.created | date:"d.M.y H:m" }}</span>
+    <span>{{ 'Published' | translate }} {{ manual.created | date:"d.M.y H:m" }}</span>
 
     <h1 class="ui header">
       <img src="{{ manual.author.avatar }}" class="ui circular image">
       <div class="content">
         {{ manual.title | titlecase }}
         <div class="sub header">
-          By <strong>{{ manual.author.first_name }} {{ manual.author.last_name }}</strong>
-          <sui-rating class="heart" [isReadonly]="true" [ngModel]="manual.rating.average" [maximum]="5"></sui-rating>
+          {{ 'By' | translate }} <strong>{{ manual.author.first_name }} {{ manual.author.last_name }}</strong>
+          <sui-rating class="star"
+                      [isReadonly]="!authService.isLoggedIn()"
+                      [ngModel]="rating"
+                      [maximum]="5"
+                      (valueChange)="ratingChange($event)"
+          ></sui-rating>
+          {{ manual.rating.average | number:'.1-1' }}
         </div>
       </div>
     </h1>
@@ -27,7 +33,7 @@
 
   </article>
 
-  <!--<div class="ui grid">
+  <div class="ui grid">
     <div class="eleven wide column">
 
       <div class="ui fluid card" *ngFor="let step of manual.steps | orderBy: 'order'">
@@ -36,6 +42,7 @@
         </div>
         <div class="content">
           <a class="header">{{ step.title }}</a>
+          {{ step.content }}
         </div>
       </div>
     </div>
@@ -45,7 +52,7 @@
         <div class="content">
 
           <div class="ui vertical text menu">
-            <div class="header item">Content</div>
+            <div class="header item">{{ 'Content' | translate }}</div>
             <a *ngFor="let step of manual.steps | orderBy: 'order'" class="item">
               {{ step.order }}. {{ step.title }}
             </a>
@@ -53,9 +60,37 @@
 
         </div>
       </div>
+
+      <div class="ui comments">
+        <h3 class="ui dividing header">{{ 'Comments' | translate }}</h3>
+
+        <form (submit)="addComment()" *ngIf="authService.isLoggedIn()" class="ui reply form">
+          <div class="field">
+            <textarea name="content" [(ngModel)]="newComment.content"
+                      required placeholder="{{ 'Start typing...' | translate }}"></textarea>
+          </div>
+          <button class="ui blue labeled submit icon button">
+            <i class="icon edit"></i> {{ 'Add reply' | translate }}
+          </button>
+        </form>
+
+        <div *ngFor="let comment of manual.comments" class="comment">
+          <a class="avatar">
+            <img src="{{ comment.author.avatar }}">
+          </a>
+          <div class="content">
+            <a class="author">{{ comment.author.first_name }} {{ comment.author.last_name }}</a>
+            <div class="text">
+              {{ comment.content }}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
-  </div>-->
+  </div>
 
 </div>
 

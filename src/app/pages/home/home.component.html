@@ -1,5 +1,27 @@
 <div class="promote-area">
+  <div class="ui stackable five column grid">
+    <div *ngFor="let manual of topManuals" class="column">
+      <div class="ui fluid link card" (click)="openDetails(manual.id)">
+        <div class="content">
+          <div class="right floated">
+            <i class="star icon"></i>
+            {{ manual.rating.average | number:'.1-1' }}
+          </div>
+          <img class="ui avatar image" src="{{ manual.author.avatar }}">
+          {{ manual.author.first_name }} {{ manual.author.last_name }}
+        </div>
+        <div class="image">
+          <img src="{{ manual.cover }}">
+        </div>
+        <div class="content">
+          <a class="header post-header">{{ manual.title }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="default-area">
   <div class="ui stackable five column grid">
     <div *ngFor="let manual of manuals" class="column">
       <div class="ui fluid link card" (click)="openDetails(manual.id)">
@@ -9,21 +31,16 @@
           {{ manual.author.first_name }} {{ manual.author.last_name }}
         </div>
 
-        <div class="image">
-          <img src="{{ manual.cover }}">
-        </div>
-
         <div class="content">
           <a class="header">{{ manual.title }}</a>
           <div class="meta">
             <span class="date">{{ 'Published' | translate }} {{ manual.created | date: "H.m d.M.y" }}</span>
           </div>
           <div class="description">
-            {{ manual.content.slice(0, 40) }}...
+            {{ manual.content.slice(0, 140) }}...
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
